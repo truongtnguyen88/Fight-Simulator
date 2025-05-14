@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bengals Fight Klub</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            padding: 30px;
+        }
+        input {
+            width: 180px;
+            margin: 5px;
+        }
+        .fighter {
+            display: inline-block;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bengals Fight Klub</h1>
+    <form action="/fight" method="POST">
+        <div class="fighter">
+            <h2>Fighter 1</h2>
+            <input type="text" name="name1" placeholder="Name"><br>
+            <input type="number" name="age1" placeholder="Approx Age"><br>
+            <input type="number" name="weight1" placeholder="Approx Weight (lbs)"><br>
+            <input type="number" name="be1" placeholder="Bitch Energy (0–10)"><br>
+        </div>
+        <div class="fighter">
+            <h2>Fighter 2</h2>
+            <input type="text" name="name2" placeholder="Name"><br>
+            <input type="number" name="age2" placeholder="Approx Age"><br>
+            <input type="number" name="weight2" placeholder="Approx Weight (lbs)"><br>
+            <input type="number" name="be2" placeholder="Bitch Energy (0–10)"><br>
+        </div>
+        <br><br>
+        <button type="submit">Fight!</button>
+    </form>
+</body>
+</html>
