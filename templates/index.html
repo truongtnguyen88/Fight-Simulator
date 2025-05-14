@@ -1,42 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bengals Fight Klub</title>
     <style>
         body {
-            font-family: Arial;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
             text-align: center;
-            padding: 30px;
+            padding: 20px;
         }
-        input {
-            width: 180px;
-            margin: 5px;
+        h1 {
+            color: #e74c3c;
+        }
+        .form-container, .result-container {
+            margin-top: 20px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-container input, .form-container select {
+            margin: 10px;
+            padding: 10px;
+            width: 200px;
+        }
+        .form-container button {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #c0392b;
         }
         .fighter {
             display: inline-block;
             margin: 20px;
         }
+        .fighter img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+        .fighter-name {
+            font-weight: bold;
+        }
+        .score {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        .winner {
+            font-size: 24px;
+            color: #e74c3c;
+        }
     </style>
 </head>
 <body>
-    <h1>Bengals Fight Klub</h1>
-    <form action="/fight" method="POST">
-        <div class="fighter">
-            <h2>Fighter 1</h2>
-            <input type="text" name="name1" placeholder="Name"><br>
-            <input type="number" name="age1" placeholder="Approx Age"><br>
-            <input type="number" name="weight1" placeholder="Approx Weight (lbs)"><br>
-            <input type="number" name="be1" placeholder="Bitch Energy (0–10)"><br>
+
+<h1>Bengals Fight Klub</h1>
+
+<div class="form-container">
+    <h2>Enter Fighter Details</h2>
+    <form method="POST">
+        <div>
+            <label for="fighter1_name">Fighter 1 Name:</label>
+            <input type="text" name="fighter1_name" required>
+            <label for="fighter1_age">Approx Age:</label>
+            <input type="number" name="fighter1_age" required>
+            <label for="fighter1_weight">Approx Weight (lbs):</label>
+            <input type="number" name="fighter1_weight" required>
+            <label for="fighter1_bitch_energy">Approx Bitch Energy (0-10):</label>
+            <input type="number" name="fighter1_bitch_energy" min="0" max="10" required>
         </div>
-        <div class="fighter">
-            <h2>Fighter 2</h2>
-            <input type="text" name="name2" placeholder="Name"><br>
-            <input type="number" name="age2" placeholder="Approx Age"><br>
-            <input type="number" name="weight2" placeholder="Approx Weight (lbs)"><br>
-            <input type="number" name="be2" placeholder="Bitch Energy (0–10)"><br>
+        <div>
+            <label for="fighter2_name">Fighter 2 Name:</label>
+            <input type="text" name="fighter2_name" required>
+            <label for="fighter2_age">Approx Age:</label>
+            <input type="number" name="fighter2_age" required>
+            <label for="fighter2_weight">Approx Weight (lbs):</label>
+            <input type="number" name="fighter2_weight" required>
+            <label for="fighter2_bitch_energy">Approx Bitch Energy (0-10):</label>
+            <input type="number" name="fighter2_bitch_energy" min="0" max="10" required>
         </div>
-        <br><br>
-        <button type="submit">Fight!</button>
+        <button type="submit">Start Fight!</button>
     </form>
+</div>
+
+{% if fighter1 and fighter2 %}
+<div class="result-container">
+    <h2>Fight Results</h2>
+    <div class="fighter">
+        <img src="{{ url_for('static', filename=fighter1['avatar']) }}" alt="Fighter 1">
+        <div class="fighter-name">{{ fighter1['name'] }}</div>
+        <div class="score">Score: {{ score1 }}</div>
+    </div>
+    <div class="fighter">
+        <img src="{{ url_for('static', filename=fighter2['avatar']) }}" alt="Fighter 2">
+        <div class="fighter-name">{{ fighter2['name'] }}</div>
+        <div class="score">Score: {{ score2 }}</div>
+    </div>
+    <div class="winner">
+        <p>{{ winner }}</p>
+    </div>
+</div>
+{% endif %}
+
 </body>
 </html>
